@@ -1,8 +1,8 @@
 [
     {
         "userId": "1434797818170073",
-        "namespace": "acs/custom/1434797818170073",
-        "logName": "kw_cloudMonitor",
+        "namespace": "ACS/CUSTOM/1434797818170073",
+        "logName": "kw_fundout_abc_error",
         "keyword": "ERROR"
     }
 ]
