@@ -44,7 +44,7 @@ public class LogMonitorConfigImpl implements LogMonitorConfig {
 			} else if (oldConfigCountent.equals(configContent)) {
 				return;
 			}
-			
+			logger.info("log monitor config change from: " + oldConfigCountent + " to:" + configContent);
 			List<MonitorConfigDO> configDOs = JSON.parseObject(configContent, new TypeReference<List<MonitorConfigDO>>(){});
 			if (configDOs == null || configDOs.isEmpty()) {
 				throw new Exception("logMonitorConfigs is empty");
