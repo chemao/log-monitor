@@ -33,7 +33,7 @@
         </dependency>
     </dependencies>
     <build>
-    	<finalName>log-monitor.war</finalName>
+    	<finalName>log-monitor</finalName>
     	<filters> 
            	<!-- 指定使用的 filter -->
           <filter>../filter.properties</filter>
