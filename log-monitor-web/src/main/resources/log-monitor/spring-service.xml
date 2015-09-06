@@ -12,7 +12,7 @@
 	
 	<bean id="logQueryService" class="com.chemao.log.monitor.collector.ALiyunSlsLogQueryServiceImpl"  init-method="init">
 		<property name="accessId" value="L5ASLE8ue7wTNBxc"/> 
-		<property name="accessKey" value="Y5Axn5jAZxPCTFY1sXwZcDxx6g3SqS"/>
+		<property name="accessKey" value=""/>
 		<property name="project" value="log-monitor"/>
 	</bean> 
 	
