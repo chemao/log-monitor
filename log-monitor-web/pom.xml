@@ -6,22 +6,18 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.chemao.log.monitor</groupId>
     <artifactId>log-monitor-web</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <name>log monitor application</name>
     <packaging>war</packaging>
-    <version>${logMoniterVersion}</version>
     <parent>
         <groupId>com.chemao.log.monitor</groupId>
         <artifactId>log-monitor</artifactId>
-        <version>${logMoniterVersion}</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
     <dependencies>
         <dependency>
             <groupId>com.chemao.log.monitor</groupId>
             <artifactId>log-monitor-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.citrus</groupId>
-            <artifactId>citrus-webx-all</artifactId>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -32,50 +28,21 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-        </dependency>
-        <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
         </dependency>
     </dependencies>
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <configuration>
-                    <webApp>
-                        <contextPath>/</contextPath>
-                    </webApp>
-                    <stopKey>webx</stopKey>
-                    <stopKey>9999</stopKey>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>8081</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
-                    <requestLog implementation="org.eclipse.jetty.server.NCSARequestLog">
-                        <filename>target/access.log</filename>
-                        <retainDays>90</retainDays>
-                        <append>false</append>
-                        <extended>false</extended>
-                        <logTimeZone>GMT+8:00</logTimeZone>
-                    </requestLog>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>productionMode</name>
-                            <value>${productionMode}</value>
-                        </systemProperty>
-                    </systemProperties>
-                </configuration>
-            </plugin>
-        </plugins>
+    	<finalName>log-monitor.war</finalName>
+    	<filters> 
+           	<!-- 指定使用的 filter -->
+          <filter>../filter.properties</filter>
+        </filters>
+        <resources>
+          <resource> <!-- 配置需要被替换的资源文件路径, spring-* 应该在 src/main/resource 目录下 -->
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering> <!-- 是否使用过滤器 -->
+          </resource>
+        </resources>
     </build>
 </project>

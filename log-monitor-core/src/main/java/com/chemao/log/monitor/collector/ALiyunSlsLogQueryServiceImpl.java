@@ -97,7 +97,8 @@ public class ALiyunSlsLogQueryServiceImpl implements LogQueryService {
 			String logStore = logName;
 			int from = (int) (startTime.getTime() / 1000);
 			int to = (int) (endTime.getTime() / 1000);
-			GetHistogramsResponse histogramsResponse = client.GetHistograms(project, logStore, from, to, null, query);
+			String topic = "";
+			GetHistogramsResponse histogramsResponse = client.GetHistograms(project, logStore, from, to, topic , query);
 			if (histogramsResponse.IsCompleted()) {
 				return (int) histogramsResponse.GetTotalCount();
 			} else {

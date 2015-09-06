@@ -25,8 +25,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Resource;
-
 import com.chemao.log.monitor.alarm.MonitorDataPushService;
 import com.chemao.log.monitor.collector.LogQueryService;
 import com.chemao.log.monitor.config.LogMonitorConfig;

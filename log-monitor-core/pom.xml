@@ -6,31 +6,40 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.chemao.log.monitor</groupId>
     <artifactId>log-monitor-core</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <name>log monitor core</name>
     <packaging>jar</packaging>
-    <version>${logMoniterVersion}</version>
     <parent>
         <groupId>com.chemao.log.monitor</groupId>
         <artifactId>log-monitor</artifactId>
-        <version>${logMoniterVersion}</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
     <dependencies>
         <!-- ================================================= -->
-            <!-- 日志及相关依赖（用slf4j+logback代替jcl+log4j） -->
-            <!-- ================================================= -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-            </dependency>
-            <!-- 将现有的jakarta commons logging的调用转换成lsf4j的调用。 -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
-            </dependency>
+        <!-- 日志及相关依赖（用slf4j+logback代替jcl+log4j） -->
+        <!-- ================================================= -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <!-- 将现有的jakarta commons logging的调用转换成lsf4j的调用。 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+		    <groupId>org.logback-extensions</groupId>
+		    <artifactId>logback-ext-spring</artifactId>
+		</dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
         </dependency>
+        <!-- unit test -->
+        <dependency>  
+             <groupId>junit</groupId>  
+             <artifactId>junit</artifactId>  
+        </dependency> 
         <!-- fastjson -->
         <dependency>
 		    <groupId>com.alibaba</groupId>
@@ -43,14 +52,10 @@
 		</dependency>
 		<!-- aliyun sls -->
 		<dependency>
-		    <groupId>com.aliyun.openservices</groupId>
-		    <artifactId>aliyun-sls-sdk-java</artifactId>
+			<groupId>com.aliyun.openservices</groupId>
+			<artifactId>aliyun-sls</artifactId>
+			<version>0.4.1</version>
 		</dependency>
-		<dependency>
-  <groupId>com.aliyun.openservices</groupId>
-  <artifactId>aliyun-openservices-sls-v0.3</artifactId>
-  <version>0.1.0</version>
-</dependency>
     </dependencies>
     <build>
         <plugins>
@@ -60,26 +65,6 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <configuration>
-                            <target>
-                                <echo message="project home:        ${basedir}" />
-                                <echo message="java home:           ${java.home}" />
-                                <echo message="java source version: ${java.version}" />
-                                <echo message="java target version: ${java.version}" />
-                                <echo message="java source charset: ${java.encoding}" />
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>

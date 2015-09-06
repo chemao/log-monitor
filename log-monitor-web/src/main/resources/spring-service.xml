@@ -11,9 +11,9 @@
 	<bean id="monitorDataPushService" class="com.chemao.log.monitor.alarm.MonitorDataPushServiceImpl"/>
 	
 	<bean id="logQueryService" class="com.chemao.log.monitor.collector.ALiyunSlsLogQueryServiceImpl"  init-method="init">
-		<property name="accessId" value="L5ASLE8ue7wTNBxc"/> 
-		<property name="accessKey" value="Y5Axn5jAZxPCTFY1sXwZcDxx6g3SqS"/>
-		<property name="project" value="log-monitor"/>
+		<property name="accessId" value="${log.monitor.sls.accessId}"/> 
+		<property name="accessKey" value="${log.monitor.sls.accessKey}"/>
+		<property name="project" value="${log.monitor.sls.project}"/>
 	</bean> 
 	
 	<bean id="logMonitorConfig" class="com.chemao.log.monitor.config.LogMonitorConfigImpl" init-method="init">

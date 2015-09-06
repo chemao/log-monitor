@@ -3,6 +3,7 @@
  */
 package com.chemao.log.monitor.collector;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Test;
@@ -22,10 +23,11 @@ public class ALiyunSlsLogQueryServiceImplTest {
 		aLiyunSlsLogQueryServiceImpl.setAccessKey("Y5Axn5jAZxPCTFY1sXwZcDxx6g3SqS");
 		aLiyunSlsLogQueryServiceImpl.setProject("log-monitor");
 		aLiyunSlsLogQueryServiceImpl.init();
-		String logName = "yunfu-kw-abc-fundout";
-		String keyword = " ";
-		Date startTime = new Date(System.currentTimeMillis() - 600000L);
-		Date endTime = new Date();
+		String logName = "yunfu-kw-counter";
+		String keyword = "ERROR";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date startTime = (Date) sdf.parseObject("2015-09-06 14:09:00");
+		Date endTime = (Date) sdf.parseObject("2015-09-06 14:09:59");
 		Integer count = aLiyunSlsLogQueryServiceImpl.getKeywordCount(logName, keyword, startTime, endTime);
 		System.err.println("count:" + count);
 	}
