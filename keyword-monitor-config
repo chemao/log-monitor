@@ -5,5 +5,11 @@
         "logName": "kw_fundout_abc_error",
         "keyword": "ERROR",
         "run":true
+    },{
+        "userId": "1434797818170073",
+        "namespace": "ACS/CUSTOM/1434797818170073",
+        "logName": "yunfu-kw-counter",
+        "keyword": "ERROR",
+        "run":true
     }
 ]
