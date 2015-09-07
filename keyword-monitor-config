@@ -4,7 +4,7 @@
         "namespace": "ACS/CUSTOM/1434797818170073",
         "logName": "kw_fundout_abc_error",
         "keyword": "ERROR",
-        "run":false
+        "run":true
     },{
         "userId": "1434797818170073",
         "namespace": "ACS/CUSTOM/1434797818170073",
