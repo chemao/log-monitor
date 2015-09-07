@@ -24,11 +24,13 @@ public class ALiyunSlsLogQueryServiceImplTest {
 		aLiyunSlsLogQueryServiceImpl.setProject("log-monitor");
 		aLiyunSlsLogQueryServiceImpl.init();
 		String logName = "yunfu-kw-counter";
-		String keyword = "ERROR";
+		String keyword = "Json";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date startTime = (Date) sdf.parseObject("2015-09-06 14:09:00");
-		Date endTime = (Date) sdf.parseObject("2015-09-06 14:09:59");
+		Date startTime = (Date) sdf.parseObject("2015-09-07 11:49:00");
+		Date endTime = new Date(startTime.getTime()+59000L);
 		Integer count = aLiyunSlsLogQueryServiceImpl.getKeywordCount(logName, keyword, startTime, endTime);
+		System.err.println("start:" + startTime);
+		System.err.println("end:  " + endTime);
 		System.err.println("count:" + count);
 	}
 

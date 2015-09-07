@@ -5,10 +5,12 @@ package com.chemao.log.monitor.config;
 
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.chemao.log.monitor.domain.MonitorConfigDO;
 import com.chemao.log.monitor.util.HttpUtil;
@@ -20,7 +22,7 @@ import com.chemao.log.monitor.util.HttpUtil;
  */
 public class LogMonitorConfigImpl implements LogMonitorConfig {
 	private static Logger logger = LoggerFactory.getLogger(LogMonitorConfigImpl.class);
-	private String configFileName = "https://raw.githubusercontent.com/chemao/log-monitor/master/keyword-monitor-config";
+	private String configFileName = "https://api.github.com/repos/chemao/log-monitor/contents/keyword-monitor-config?ref=master";
 	private String oldConfigCountent = "";
 	private List<MonitorConfigDO> logMonitorConfigs;
 	
@@ -38,7 +40,7 @@ public class LogMonitorConfigImpl implements LogMonitorConfig {
 	
 	public void refreshLogMonitorConfigs() throws Exception {
 		try {
-			String configContent = HttpUtil.get(configFileName);
+			String configContent = getConfigContent();
 			if (configContent == null || configContent.trim().isEmpty()) {
 				throw new Exception("logMonitorConfigs is empty");
 			} else if (oldConfigCountent.equals(configContent)) {
@@ -57,6 +59,24 @@ public class LogMonitorConfigImpl implements LogMonitorConfig {
 		}
 	}
 	
+	/**
+	 * @return
+	 * @throws Exception 
+	 */
+	private String getConfigContent() throws Exception {
+		String apiJsonResult = HttpUtil.get(configFileName);
+		if (apiJsonResult == null || apiJsonResult.isEmpty()) {
+			return null;
+		}
+		JSONObject jsonObject = JSON.parseObject(apiJsonResult);
+		String encoding = (String) jsonObject.get("encoding");
+		String content = (String) jsonObject.get("content");
+		if ("base64".equalsIgnoreCase(encoding) && content != null)
+			return new String(Base64.decodeBase64(content));
+		else 
+			return null;
+	}
+
 	@Override
 	public List<MonitorConfigDO> getLogMonitorConfigs() {
 		return logMonitorConfigs;

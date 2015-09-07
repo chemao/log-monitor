@@ -25,6 +25,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.chemao.log.monitor.alarm.MonitorDataPushService;
 import com.chemao.log.monitor.collector.LogQueryService;
 import com.chemao.log.monitor.config.LogMonitorConfig;
@@ -38,6 +41,7 @@ import com.chemao.log.monitor.domain.MonitorConfigDO;
  * @version V1.0 
  */
 public class MonitorTaskGenerator {
+	private Logger logger = LoggerFactory.getLogger(MonitorTaskGenerator.class);
 	private final long submitTaskInterval = 60000L;	// 任务提交时间
 	private final long monitorInterval = 60000L;	// 监控采样间隔
 	private final long monitorDelayTime = 10000L;	// 监控采样延迟时间
@@ -47,11 +51,23 @@ public class MonitorTaskGenerator {
 	private LogMonitorConfig logMonitorConfig;
 	private LogQueryService logQueryService;
 	private MonitorDataPushService monitorDataPushService;
-	private long startTime = System.currentTimeMillis();
+	private long endTime = System.currentTimeMillis();
 	public ThreadPoolExecutor getThreadPoolExecutor() {
 		return threadPoolExecutor;
 	}
-	
+
+	public void setLogMonitorConfig(LogMonitorConfig logMonitorConfig) {
+		this.logMonitorConfig = logMonitorConfig;
+	}
+
+	public void setLogQueryService(LogQueryService logQueryService) {
+		this.logQueryService = logQueryService;
+	}
+
+	public void setMonitorDataPushService(MonitorDataPushService monitorDataPushService) {
+		this.monitorDataPushService = monitorDataPushService;
+	}
+
 	public void init() {
 		threadPoolExecutor = new ThreadPoolExecutor(40, 40, 300000L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(), new ThreadPoolExecutor.CallerRunsPolicy());
 		timerTask = new TimerTask() {
@@ -60,15 +76,17 @@ public class MonitorTaskGenerator {
 				submitTask();				
 			}
 		};
+		timer = new Timer(true);
 		timer.scheduleAtFixedRate(timerTask, 0, submitTaskInterval);
+		logger.info("MonitorTaskGenerator init,submitTaskInterval="+submitTaskInterval+", monitorInterval="+monitorInterval+", monitorDelayTime=" + monitorDelayTime);
 	}
 
 	public void submitTask() {
 		long currentTime = System.currentTimeMillis();
-		long maxStartTime = currentTime - monitorDelayTime - monitorInterval;
-		for (;startTime <= maxStartTime; startTime += monitorInterval) {
-			Date start = new Date(startTime);
-			Date end = new Date(startTime + monitorInterval);
+		long maxEndTime = currentTime - monitorDelayTime;
+		for (;endTime <= maxEndTime; endTime += monitorInterval) {
+			Date start = new Date(endTime - monitorInterval);
+			Date end = new Date(endTime);
 			List<MonitorConfigDO> logMonitorConfigs = logMonitorConfig.getLogMonitorConfigs();
 			for (MonitorConfigDO monitorConfigDO : logMonitorConfigs) {
 				if (monitorConfigDO.getRun() == null || !monitorConfigDO.getRun()) {

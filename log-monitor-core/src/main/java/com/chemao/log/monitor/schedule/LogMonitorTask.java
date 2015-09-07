@@ -20,6 +20,7 @@ import com.chemao.log.monitor.domain.MonitorConfigDO;
  */
 public class LogMonitorTask implements Runnable {
 	private Logger logger = LoggerFactory.getLogger(LogMonitorTask.class);
+	private Logger monitorLog = LoggerFactory.getLogger("monitorLog");
 	private LogQueryService logQueryService;
 	private MonitorDataPushService monitorDataPushService;
 	private MonitorConfigDO monitorConfigDO;
@@ -34,16 +35,35 @@ public class LogMonitorTask implements Runnable {
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
+	
 	public void run() {
-		Integer count;
+		Integer count = null;
+		String processResult = null;
+		long nowTimeStamp = System.currentTimeMillis();
 		try {
 			count = logQueryService.getKeywordCount(monitorConfigDO.getLogName(), monitorConfigDO.getKeyword(), startTime, endTime);
 			if (count == null) {
 				return;	// 当前时间段的日志未分析完成
 			}
 			monitorDataPushService.pushKeywordCount(monitorConfigDO.getUserId(), monitorConfigDO.getNamespace(), monitorConfigDO.getLogName(), monitorConfigDO.getKeyword(), count, endTime, null);
+			processResult = "SUCCESS";
 		} catch (Exception e) {
+			processResult = "ERROR";
 			logger.error(String.format("MONITOR_TASK_ERROR:logName=%s,keyword=%s,userId=%,namespace=%,start=%,end=%. msg=", monitorConfigDO.getLogName(), monitorConfigDO.getKeyword(), monitorConfigDO.getUserId(), monitorConfigDO.getNamespace(), startTime, endTime,e.getMessage()), e);
+		} finally {
+			recordMonitorLog(monitorConfigDO, count, processResult, System.currentTimeMillis() - nowTimeStamp);
 		}
+	}
+	
+	private void recordMonitorLog(MonitorConfigDO monitorConfigDO, Integer count, String result, long costTime) {
+//		log format:logType(M),timestamp,logName,keyword,result,cost
+		StringBuilder stringBuilder = new StringBuilder("M,"); 
+		stringBuilder.append(System.currentTimeMillis());
+		stringBuilder.append(monitorConfigDO.getLogName()).append(",");
+		stringBuilder.append(monitorConfigDO.getKeyword()).append(",");
+		stringBuilder.append(count).append(",");
+		stringBuilder.append(result).append(",");
+		stringBuilder.append(costTime);
+		monitorLog.error(stringBuilder.toString());
 	}
 }
