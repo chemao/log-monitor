@@ -4,3 +4,7 @@
 
 ### 注意事项
 1. filter.properties的文件内容不要提交到github, log-monitor工程时对外公开的
+
+### 状态监测
+* logmonitor自检地址：/log-monitor/preload
+* logmonitor配置更新：/log-monitor/configModifyNotify

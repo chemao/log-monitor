@@ -23,10 +23,10 @@ public class MonitorDataPushServiceImpl implements MonitorDataPushService {
 		stringBuilder.append("[{\"metricName\":\"").append(logName)
 			.append("\",\"timestamp\":\"").append(date.getTime())
 			.append("\",\"value\":").append(value)
-			.append("\",\"unit\":\"个\",\"dimensions\":{\"keyword\":\"").append(keyword)
+			.append(",\"unit\":\"Count\",\"dimensions\":{\"keyword\":\"").append(keyword)
 			.append("\",\"ip\":\"").append(ip)
 			.append("\"}}]");
-		
+		System.err.println(stringBuilder);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("userId", userId);
 		params.put("namespace", namespace);

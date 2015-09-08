@@ -20,7 +20,7 @@ public class MonitorDataPushServiceImplTest {
 		MonitorDataPushService monitorDataPushService = new MonitorDataPushServiceImpl();
 		String userId = "1434797818170073";
 		String namespace = "acs/custom/1434797818170073";
-		String logName= "kw_fundout_abc_error";
+		String logName= "cloudpay_kw_counter";
 		String keyword = "ERROR";
 		int value = 800;
 		Date date = new Date();

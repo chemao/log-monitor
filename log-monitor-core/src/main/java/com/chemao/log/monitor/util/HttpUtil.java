@@ -20,7 +20,6 @@ public class HttpUtil {
 
 	public static String post(String url, Map<String, String> params) throws Exception {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
-
 		HttpPost httpPost = new HttpPost(url);
 		if (params != null && !params.isEmpty()) {
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
@@ -32,15 +31,22 @@ public class HttpUtil {
 
 		CloseableHttpResponse response = httpclient.execute(httpPost);
 		try {
-			if (response.getStatusLine() == null || response.getStatusLine().getStatusCode() != 200) {
-				throw new Exception("response status error");
-			}
 			HttpEntity entity = response.getEntity();
-			return EntityUtils.toString(entity);
+			String responseContent = null;
+			if (entity != null)
+				responseContent = EntityUtils.toString(entity);
+			
+			if (response.getStatusLine() == null || response.getStatusLine().getStatusCode() != 200) {
+				if (response.getEntity() != null) {
+					throw new Exception("response status error, statusLine:" + response.getStatusLine() + ", detail:" + responseContent);					
+				}
+			}
+			return responseContent;
 		} finally {
 			response.close();
 		}
 	}
+	
 	public static String get(String url) throws Exception {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 

@@ -25,6 +25,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,6 +50,7 @@ public class MonitorTaskGenerator {
 	private Timer timer;
 	private TimerTask timerTask;
 	private ThreadPoolExecutor threadPoolExecutor;
+	@Resource
 	private LogMonitorConfig logMonitorConfig;
 	private LogQueryService logQueryService;
 	private MonitorDataPushService monitorDataPushService;
@@ -82,21 +85,26 @@ public class MonitorTaskGenerator {
 	}
 
 	public void submitTask() {
-		long currentTime = System.currentTimeMillis();
-		long maxEndTime = currentTime - monitorDelayTime;
-		for (;endTime <= maxEndTime; endTime += monitorInterval) {
-			Date start = new Date(endTime - monitorInterval);
-			Date end = new Date(endTime);
-			List<MonitorConfigDO> logMonitorConfigs = logMonitorConfig.getLogMonitorConfigs();
-			for (MonitorConfigDO monitorConfigDO : logMonitorConfigs) {
-				if (monitorConfigDO.getRun() == null || !monitorConfigDO.getRun()) {
-					continue;
+		try {
+			long currentTime = System.currentTimeMillis();
+			long maxEndTime = currentTime - monitorDelayTime;
+			for (;endTime <= maxEndTime; endTime += monitorInterval) {
+				Date start = new Date(endTime - monitorInterval);
+				Date end = new Date(endTime);
+				List<MonitorConfigDO> logMonitorConfigs = logMonitorConfig.getLogMonitorConfigs();
+				for (MonitorConfigDO monitorConfigDO : logMonitorConfigs) {
+					if (monitorConfigDO.getRun() == null || !monitorConfigDO.getRun()) {
+						continue;
+					}
+					LogMonitorTask logMonitorTask = new LogMonitorTask(logQueryService, monitorDataPushService, 
+							monitorConfigDO, start, end);
+					threadPoolExecutor.submit(logMonitorTask);
 				}
-				LogMonitorTask logMonitorTask = new LogMonitorTask(logQueryService, monitorDataPushService, 
-						monitorConfigDO, start, end);
-				threadPoolExecutor.submit(logMonitorTask);
-			}
+			}	
+		} catch (Throwable throwable){
+			logger.error("SUBMIT_MONITOR_TASK_ERROR:", throwable);
 		}
+		
 	}
 	
 }

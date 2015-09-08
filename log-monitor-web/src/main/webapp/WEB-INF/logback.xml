@@ -2,36 +2,37 @@
 <!-- Logback Configuration.  -->
 <configuration debug="false">
 	<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->  
-    <property name="LOG_HOME" value="~/log" />  
+    <property name="LOG_HOME" value="${catalina.base}/log" />  
     <property name="LOG_ENCODING" value="UTF-8" />  
     
+    <appender name="rootAppender"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <Encoding>UTF-8</Encoding>   
+        <file>${LOG_HOME}/log-monitor.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/log-monitor.log.%d{yyyy-MM-dd}</FileNamePattern>   
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>   
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>   
+       </layout> 
+    </appender> 
     
     <!-- 按照每天生成日志文件 -->   
     <appender name="monitorLogAppender"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
         <Encoding>${LOG_ENCODING}</Encoding>   
+        <file>${LOG_HOME}/monitor-data.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
             <FileNamePattern>${LOG_HOME}/monitor-data.log.%d{yyyy-MM-dd}</FileNamePattern>   
-            <MaxHistory>30</MaxHistory>
-        </rollingPolicy>   
-        <layout class="ch.qos.logback.classic.PatternLayout">  
-            <pattern>%msg%n</pattern>   
-       </layout> 
-    </appender> 
-    
-    <appender name="rootAppender"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
-        <Encoding>UTF-8</Encoding>   
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--日志文件输出的文件名-->
-            <FileNamePattern>${LOG_HOME}/monitor-data.log.%d{yyyy-MM-dd}</FileNamePattern>   
-            <MaxHistory>30</MaxHistory>
+            <MaxHistory>90</MaxHistory>
         </rollingPolicy>   
         <layout class="ch.qos.logback.classic.PatternLayout">  
             <pattern>%msg%n</pattern>   
        </layout> 
     </appender> 
 
-    <logger name="monitorLog">
+    <logger name="monitorLog" additivity="false">
         <level value="INFO" />
         <appender-ref ref="monitorLogAppender" />
     </logger>
