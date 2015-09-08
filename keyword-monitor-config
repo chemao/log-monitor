@@ -8,7 +8,7 @@
     },{
         "userId": "1434797818170073",
         "namespace": "ACS/CUSTOM/1434797818170073",
-        "logName": "yunfu-kw-counter",
+        "logName": "cloudpay_kw_counter",
         "keyword": "ERROR",
         "run":true
     }
