@@ -28,7 +28,7 @@ public class ConfigModifyNotify extends BaseServlet {
 		return logMonitorConfig;
 	}
 	
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		try {
 			getLogMonitorConfig().refreshLogMonitorConfigs();
 			resp.getWriter().write("SUCCESS");
@@ -36,5 +36,9 @@ public class ConfigModifyNotify extends BaseServlet {
 			logger.error("REFRESH_LOG_MONITOR_CONFIG_ERROR", throwable);
 			resp.getWriter().write("ERROR");
 		}
+	}
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
 	}
 }

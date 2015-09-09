@@ -32,8 +32,8 @@ public class Preload extends BaseServlet {
 		return monitorTaskGenerator;
 	}
 	
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    	try {
 			MonitorTaskGenerator monitorTaskGenerator = getMonitorTaskGenerator();
 			if (monitorTaskGenerator.getThreadPoolExecutor() != null && !monitorTaskGenerator.getThreadPoolExecutor().isShutdown()) {
 				resp.getWriter().write("TRUE");
@@ -44,5 +44,9 @@ public class Preload extends BaseServlet {
 			logger.error("PRELOAD_CHECK_ERROR:", throwable);
 			resp.sendError(500);
 		}
+    }
+
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
 	}
 }
