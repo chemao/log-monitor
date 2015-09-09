@@ -2,6 +2,24 @@
     {
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "cloudpay_kw_abc_out",
+        "keyword": "ERROR",
+        "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "cloudpay_kw_abc_pos",
+        "keyword": "ERROR",
+        "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "cloudpay_kw_bill",
+        "keyword": "ERROR",
+        "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "cloudpay_couterapi",
         "keyword": "ERROR",
         "run":true
@@ -51,6 +69,24 @@
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "cloudpay_kw_site_wap",
+        "keyword": "ERROR",
+        "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "cloudpay_kw_mag",
+        "keyword": "ERROR",
+        "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "cloudpay_kw_payment",
+        "keyword": "ERROR",
+        "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "cloudpay_pament_task",
         "keyword": "ERROR",
         "run":true
     }
