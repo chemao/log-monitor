@@ -105,9 +105,6 @@ public class ALiyunSlsLogQueryServiceImpl implements LogQueryService {
 				return null;
 			}
 		} catch (SlsException e) {
-			System.out.println("error code :" + e.GetErrorCode());
-			System.out.println("error message :" + e.GetErrorMessage());
-			System.out.println("error requestId :" + e.GetRequestId());
 			logger.error(String.format("CALL_SLS_API_ERROR:code=%s,msg=%s,requestId=%s", e.GetErrorCode(), e.GetErrorMessage(), e.GetRequestId()), e);
 		}
 		return null;
