@@ -51,7 +51,7 @@
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "cloudpay_kw_site_wap",
-        "keyword": "ERROR_",
+        "keyword": "ERROR",
         "run":true
     }
 ]
