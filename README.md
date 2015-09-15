@@ -1,3 +1,6 @@
+### 系统结构
+![image](https://cloud.githubusercontent.com/assets/1988293/9754510/70ecbfb2-56fc-11e5-9bbd-cef1f0739e15.png)
+
 ### 打包
 1. 从github的配置中，把相应环境的配置文件内容拷贝到 filter.properties中。
 2. mvn package -Dmaven.test.skip=true
