@@ -8,7 +8,7 @@
 	
     <!-- 初始化日志系统 -->
     <listener>
-	    <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+	    <listener-class>com.chemao.log.listener.LogbackListener</listener-class>
 	</listener>
 	<context-param>
     <param-name>logbackConfigLocation</param-name>
