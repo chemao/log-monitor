@@ -44,5 +44,15 @@
 	<servlet-mapping> 
 		<servlet-name>Preload</servlet-name> 
 		<url-pattern>/preload</url-pattern> 
-	</servlet-mapping> 
+	</servlet-mapping>
+
+	<!-- 处理微信公众号新消息通知 -->
+   	<servlet> 
+		<servlet-name>Weixin</servlet-name> 
+		<servlet-class>com.chemao.log.servlet.WeixinNotify</servlet-class> 
+	</servlet> 
+	<servlet-mapping> 
+		<servlet-name>WeixinNotify</servlet-name> 
+		<url-pattern>/WeixinNotify</url-pattern> 
+	</servlet-mapping>
 </web-app>
