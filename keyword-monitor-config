@@ -93,7 +93,7 @@
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "chemao_kw_mobile",
-        "keyword": "CS_UPLOAD_CAR_FIELD",
+        "keyword": "CS_UPLOAD_CAR_FAIL",
         "run":true
     }
 ]
