@@ -95,5 +95,11 @@
         "logName": "chemao_kw_mobile",
         "keyword": "CS_UPLOAD_CAR_FAIL",
         "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "cloudpay_kw_hxb",
+        "keyword": "ERROR",
+        "run":true
     }
 ]
