@@ -105,37 +105,37 @@
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "chemao_kw_mobile",
-        "keyword": "CMCarUploadNormalError",
+        "keyword": "CS_CMCarUploadNormalError",
         "run":true
     },{
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "chemao_kw_mobile",
-        "keyword": "CMCarUploadFastError",
+        "keyword": "CS_CMCarUploadFastError",
         "run":true
     },{
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "chemao_kw_mobile",
-        "keyword": "CMCarUploadFindCarError",
+        "keyword": "CS_CMCarUploadFindCarError",
         "run":true
     },{
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "chemao_kw_mobile",
-        "keyword": "CMOrderCreateError",
+        "keyword": "CS_CMOrderCreateError",
         "run":true
     },{
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "chemao_kw_mobile",
-        "keyword": "CMPayCodeError",
+        "keyword": "CS_CMPayCodeError",
         "run":true
     },{
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "chemao_kw_mobile",
-        "keyword": "CMPayBindError",
+        "keyword": "CS_CMPayBindError",
         "run":true
     }
 ]
