@@ -137,5 +137,17 @@
         "logName": "chemao_kw_mobile",
         "keyword": "CS_CMPayBindError",
         "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "cloudpay_kw_cmf",
+        "keyword": "ERROR",
+        "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "cloudpay_kw_cmf_task",
+        "keyword": "ERROR",
+        "run":true
     }
 ]
