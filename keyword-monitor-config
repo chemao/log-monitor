@@ -149,5 +149,17 @@
         "logName": "cloudpay_kw_cmf_task",
         "keyword": "ERROR",
         "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "order-center",
+        "keyword": "ERROR",
+        "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "fin-loan",
+        "keyword": "ERROR",
+        "run":true
     }
 ]
