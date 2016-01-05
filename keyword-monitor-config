@@ -152,13 +152,13 @@
     },{
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
-        "logName": "order-center",
+        "logName": "order_center",
         "keyword": "ERROR",
         "run":true
     },{
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
-        "logName": "fin-loan",
+        "logName": "fin_loan",
         "keyword": "ERROR",
         "run":true
     }
