@@ -167,5 +167,11 @@
         "logName": "trade",
         "keyword": "ERROR",
         "run":true
+    },{
+        "userId": "1853855029210613",
+        "namespace": "ACS/CUSTOM/1853855029210613",
+        "logName": "search",
+        "keyword": "ERROR",
+        "run":true
     }
 ]
