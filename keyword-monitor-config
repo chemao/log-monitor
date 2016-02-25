@@ -171,13 +171,13 @@
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "search",
-        "keyword": "Search Error",
+        "keyword": "SEARCH_ERROR",
         "run":true
     },{
         "userId": "1853855029210613",
         "namespace": "ACS/CUSTOM/1853855029210613",
         "logName": "search",
-        "keyword": "Search Failed",
+        "keyword": "SEARCH_FAILED",
         "run":true
     }
 ]
